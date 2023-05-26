@@ -1,0 +1,31 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Item_1 = require("./Item");
+var Shop_1 = require("./Shop");
+var User_1 = require("./User");
+var uuid_1 = require("uuid");
+var apple = new Item_1.default((0, uuid_1.v4)(), 'apple', 3, 'red delicious');
+var orange = new Item_1.default((0, uuid_1.v4)(), 'orange', 2, 'easy peel');
+var banana = new Item_1.default((0, uuid_1.v4)(), 'banana', 1, 'ripe and ready to go');
+function Driver(name, age) {
+    var shop = new Shop_1.default(apple, orange, banana);
+    var user = new User_1.default((0, uuid_1.v4)(), name, age, []);
+    user.cart.push(shop.item1);
+    user.cart.push(shop.item1);
+    user.cart.push(shop.item1);
+    user.cart.push(shop.item2);
+    user.cart.push(shop.item2);
+    user.cart.push(shop.item2);
+    user.cart.push(shop.item3);
+    user.cart.push(shop.item3);
+    user.cart.push(shop.item3);
+    user.cartTotal(user);
+    user.printCart(user);
+    user.removeFromCart(shop.item1, user);
+    user.cartTotal(user);
+    user.printCart(user);
+    user.removeQuantityFromCart(shop.item2, user, 2);
+    user.cartTotal(user);
+    user.printCart(user);
+}
+Driver('ray', 25);
